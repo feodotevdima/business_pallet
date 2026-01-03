@@ -4,10 +4,16 @@
     <meta charset="utf-8">
     <title>Redirecting...</title>
     <script>
-        window.location.href = '/';
+        const originalPath = window.location.pathname + window.location.search;
+        
+        window.location.replace('/?redirect=' + encodeURIComponent(originalPath));
     </script>
 </head>
 <body>
-    <p>Redirecting to home page...</p>
+    <noscript>
+        <h1>Page Not Found</h1>
+        <p>Please enable JavaScript to continue.</p>
+        <meta http-equiv="refresh" content="0;url=/" />
+    </noscript>
 </body>
 </html>
