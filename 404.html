@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Redirecting...</title>
+    <script>
+        // Полный рабочий скрипт для GitHub Pages
+        sessionStorage.redirect = location.href;
+        location.replace('/?redirect=' + encodeURIComponent(location.pathname + location.search));
+    </script>
+</head>
+<body>
+    <noscript>
+        <h1>Page Not Found</h1>
+        <p>Redirecting to home page...</p>
+        <meta http-equiv="refresh" content="0;url=/" />
+    </noscript>
+</body>
+</html>
