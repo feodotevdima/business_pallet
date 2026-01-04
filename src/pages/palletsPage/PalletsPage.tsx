@@ -48,11 +48,11 @@ const PalletsPage: React.FC = () => {
         if (groupIndex === 0) {
             setCurrentItems([
                 {
-                    path: '/assets/catalog/euro/variety1.svg',
+                    path: '/assets/catalog/euro/variety1.webp',
                     text: `Европоддон б/у 800х1200 мм 1 сорт, грузоподъемность 2500 кг.`
                 },
                 {
-                    path: '/assets/catalog/euro/variety2.svg',
+                    path: '/assets/catalog/euro/variety2.webp',
                     text: `Европоддон б/у 800х1200 мм 2 сорт, грузоподъемность 2500 кг.`
                 }
             ]);
@@ -60,11 +60,11 @@ const PalletsPage: React.FC = () => {
         } else if (groupIndex === 1) {
             setCurrentItems([
                 {
-                    path: '/assets/catalog/euroBk/variety1.svg',
+                    path: '/assets/catalog/euroBk/variety1.webp',
                     text: `Европоддон б/у 800х1200 мм 1 сорт, грузоподъемность 2500 кг. (БК)`
                 },
                 {
-                    path: '/assets/catalog/euroBk/variety2.svg',
+                    path: '/assets/catalog/euroBk/variety2.webp',
                     text: `Европоддон б/у 800х1200 мм 2 сорт, грузоподъемность 2500 кг. (БК)`
                 }
             ]);
@@ -72,11 +72,11 @@ const PalletsPage: React.FC = () => {
         } else if (groupIndex === 2) {
             setCurrentItems([
                 {
-                    path: '/assets/catalog/typical/variety1.svg',
+                    path: '/assets/catalog/typical/variety1.webp',
                     text: `Поддон б/у 800х1200 мм 1 сорт, грузоподъемность 1500 кг.`
                 },
                 {
-                    path: '/assets/catalog/typical/variety2.svg',
+                    path: '/assets/catalog/typical/variety2.webp',
                     text: `Поддон б/у 800х1200 мм 2 сорт, грузоподъемность 1500 кг.`
                 }
             ]);
@@ -84,11 +84,11 @@ const PalletsPage: React.FC = () => {
         } else if (groupIndex === 3) {
             setCurrentItems([
                 {
-                    path: '/assets/catalog/wide/variety1.svg',
+                    path: '/assets/catalog/wide/variety1.webp',
                     text: `Поддон б/у 1000х1200 мм 1 сорт, грузоподъемность 1500 кг.`
                 },
                 {
-                    path: '/assets/catalog/wide/variety2.svg',
+                    path: '/assets/catalog/wide/variety2.webp',
                     text: `Поддон б/у 1000х1200 мм 2 сорт, грузоподъемность 1500 кг.`
                 }
             ]);
