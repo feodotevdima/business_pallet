@@ -13,7 +13,7 @@
 
 .hero {
     height: calc(100vh - 80px);
-    background: url('/public/assets/backgrounds/forestWinter.svg') center/cover no-repeat;
+    background: url('/public/assets/backgrounds/forestWinter.jpg') center/cover no-repeat;
     display: flex;
     align-items: center;
     justify-content: flex-start;
