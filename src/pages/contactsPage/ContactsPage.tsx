@@ -63,7 +63,7 @@ const ContactsPage: React.FC = () => {
                             <p>Позвонив нам , Вы получите подробную информацию.<br />
                                 Мы рады каждому клиенту!</p>
                         </div>
-                        <button className={styles.mainBtn}>Позвонить</button>
+                        <button className={styles.mainBtn} onClick={() => window.location.href = 'tel:+79214060896'}>Позвонить</button>
                     </div>
                 </div>
             </section>
