@@ -1,14 +1,16 @@
-import React, { useEffect } from 'react';
+'use client'
+
+
+import { useRouter } from 'next/navigation';
 import styles from "./AboutPage.module.css";
-import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 
-const AboutPage: React.FC = () => {
-  const navigate = useNavigate();
-
+export default function AboutPage() {
   useEffect(() => {
-        document.title = 'О компании';
-    }, []);
-
+    document.title = 'О компании БизнесПаллет | Санкт-Петербург';
+  }, []);
+  const router = useRouter();
+  
   return (
     <div className={styles.wrapper}>
       <section className={styles.hero}>
@@ -23,7 +25,7 @@ const AboutPage: React.FC = () => {
               <p>    Опыт и&nbsp;знание в&nbsp;Паллетном бизнесе у&nbsp;сотрудников компании более&nbsp;15 лет. Производственные возможности компании позволяют сотрудничать с&nbsp;самыми требовательными клиентами и&nbsp;расширяет из года в&nbsp;год свои возможности.</p>
               <p>    На 2025г компания сотрудничает уже&nbsp;с&nbsp;более чем 40 клиентами в&nbsp;г.&nbsp;Санкт-Петербурге и&nbsp;Ленинградской области. Работаем только с&nbsp;проверенными и&nbsp;надежными Партерами. Компания может гарантировать качество товара, хранение, погрузку-разгрузку товара и&nbsp;доставку до&nbsp;пункта назначения в&nbsp;срок.</p>
             </div>
-            <button className={styles.mainBtn} onClick={() => navigate('/pallets')}>Выбрать поддоны</button>
+            <button onClick={() => router.push('/pallets')} className={styles.mainBtn}>Выбрать поддоны</button>
           </div>
         </div>
       </section>
@@ -60,15 +62,18 @@ const AboutPage: React.FC = () => {
             Есть потребность в паллетах? Опишите объём, сорт и особые пожелания. <br />
             Мы оперативно подготовим для Вас коммерческое предложение.
           </p>
-          <button className={styles.whiteBtn} onClick={() => window.location.href = 'tel:+79214060896'}>Позвоните нам</button>
+          <button 
+            className={styles.whiteBtn} 
+            onClick={() => window.location.href = 'tel:+79214060896'}
+          >
+            Позвоните нам
+          </button>
         </div>
-<div className={styles.center_circle}></div>
+        <div className={styles.center_circle}></div>
         <div className={`${styles.circle} ${styles.third_right}`}></div>
         <div className={`${styles.circle} ${styles.second_right}`}></div>
         <div className={`${styles.circle} ${styles.first_right}`}></div>
       </section>
     </div>
   );
-};
-
-export default AboutPage;
+}

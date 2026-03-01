@@ -1,10 +1,14 @@
-import React, { useEffect } from 'react';
+'use client'
+
+
 import styles from "./ServicesPage.module.css";
+import { useEffect } from 'react';
+
 
 const ServicesPage: React.FC = () => {
   useEffect(() => {
-    document.title = 'Услуги';
-  }, []);
+      document.title = 'Услуги компании БизнесПаллет | Санкт-Петербург';
+    }, []);
 
   return (
     <div className={styles.wrapper}>

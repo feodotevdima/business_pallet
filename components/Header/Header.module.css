@@ -25,7 +25,7 @@
     gap: 30px;
 }
 
-.desktopNav button {
+.desktopNav .link {
     background: none;
     border: none;
     font-size: 18px;
@@ -33,13 +33,14 @@
     color: #000;
     cursor: pointer;
     padding: 0;
+    text-decoration: none;
 }
 
-.desktopNav button:hover {
+.desktopNav .link:hover {
     color: #85AE72;
 }
 
-.desktopNav button.active {
+.desktopNav .link.active {
     color: #bcbd81ff;
 }
 

@@ -1,15 +1,17 @@
-import React, { useState, useEffect, useRef } from 'react';
-import styles from "./Header.module.css";
-import { useLocation, useNavigate } from 'react-router-dom';
+'use client';
 
-const Header: React.FC = () => {
-    const location = useLocation();
-    const navigate = useNavigate();
+import { useState, useEffect, useRef } from 'react';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import styles from "./Header.module.css";
+
+const Header = () => {
+    const pathname = usePathname();
     const [menuOpen, setMenuOpen] = useState(false);
     const scrollYRef = useRef(0);
 
     const getButtonColor = () => {
-        switch (location.pathname) {
+        switch (pathname) {
             case '/about':
                 return '#85AE72';
             case '/pallets':
@@ -24,16 +26,11 @@ const Header: React.FC = () => {
     };
 
     const isActive = (path: string) => {
-        return location.pathname === path;
+        return pathname === path;
     };
 
     const handleCall = () => {
         window.location.href = 'tel:+79214060896';
-    };
-
-    const handleNavigate = (path: string) => {
-        navigate(path);
-        setMenuOpen(false);
     };
 
     const toggleMenu = () => {
@@ -47,24 +44,15 @@ const Header: React.FC = () => {
     useEffect(() => {
         if (menuOpen) {
             scrollYRef.current = window.scrollY;
-            
             document.body.style.position = 'fixed';
             document.body.style.top = `-${scrollYRef.current}px`;
-            document.body.style.left = '0';
-            document.body.style.right = '0';
             document.body.style.overflow = 'hidden';
-            document.body.style.width = '100%';
-
             document.documentElement.style.overflow = 'hidden';
         } else {
             document.body.style.position = '';
             document.body.style.top = '';
-            document.body.style.left = '';
-            document.body.style.right = '';
             document.body.style.overflow = '';
-            document.body.style.width = '';
             document.documentElement.style.overflow = '';
-
             window.scrollTo(0, scrollYRef.current);
         }
         
@@ -72,10 +60,7 @@ const Header: React.FC = () => {
             if (menuOpen) {
                 document.body.style.position = '';
                 document.body.style.top = '';
-                document.body.style.left = '';
-                document.body.style.right = '';
                 document.body.style.overflow = '';
-                document.body.style.width = '';
                 document.documentElement.style.overflow = '';
                 window.scrollTo(0, scrollYRef.current);
             }
@@ -90,62 +75,45 @@ const Header: React.FC = () => {
         };
 
         document.addEventListener('keydown', handleEscape);
-
-        return () => {
-            document.removeEventListener('keydown', handleEscape);
-        };
+        return () => document.removeEventListener('keydown', handleEscape);
     }, [menuOpen]);
 
     useEffect(() => {
         closeMenu();
-    }, [location.pathname]);
-
-    useEffect(() => {
-        const headerHeight = window.innerWidth <= 768 ? 70 : 80;
-
-        const style = document.createElement('style');
-        style.innerHTML = `
-            body {
-                padding-top: ${headerHeight}px;
-            }
-        `;
-        document.head.appendChild(style);
-        
-        return () => {
-            document.head.removeChild(style);
-        };
-    }, []);
+    }, [pathname]);
 
     return (
         <header className={styles.header}>
             <div className={styles.container}>
+                {/* Десктопное меню */}
                 <nav className={styles.desktopNav}>
-                    <button
-                        className={isActive('/about') ? styles.active : ''}
-                        onClick={() => navigate('/about')}
+                    <Link
+                        href="/about"
+                        className={`${styles.link} ${isActive('/about') || isActive('/') ? styles.active : ''}`}
                     >
                         О компании
-                    </button>
-                    <button
-                        className={isActive('/pallets') ? styles.active : ''}
-                        onClick={() => navigate('/pallets')}
+                    </Link>
+                    <Link
+                        href="/pallets"
+                        className={`${styles.link} ${isActive('/pallets') ? styles.active : ''}`}
                     >
                         Поддоны
-                    </button>
-                    <button
-                        className={isActive('/services') ? styles.active : ''}
-                        onClick={() => navigate('/services')}
+                    </Link>
+                    <Link
+                        href="/services"
+                        className={`${styles.link} ${isActive('/services') ? styles.active : ''}`}
                     >
                         Услуги
-                    </button>
-                    <button
-                        className={isActive('/contacts') ? styles.active : ''}
-                        onClick={() => navigate('/contacts')}
+                    </Link>
+                    <Link
+                        href="/contacts"
+                        className={`${styles.link} ${isActive('/contacts') ? styles.active : ''}`}
                     >
                         Контакты
-                    </button>
+                    </Link>
                 </nav>
 
+                {/* Бургер меню */}
                 <button 
                     className={`${styles.burger} ${menuOpen ? styles.open : ''}`}
                     onClick={toggleMenu}
@@ -157,6 +125,7 @@ const Header: React.FC = () => {
                     <span></span>
                 </button>
 
+                {/* Контакты */}
                 <div className={styles.contacts}>
                     <div className={styles.phone}>8-921-406-08-96</div>
                     <button 
@@ -168,6 +137,7 @@ const Header: React.FC = () => {
                     </button>
                 </div>
 
+                {/* Оверлей и мобильное меню */}
                 <div 
                     className={`${styles.overlay} ${menuOpen ? styles.show : ''}`}
                     onClick={closeMenu}
@@ -181,30 +151,34 @@ const Header: React.FC = () => {
                     role="menu"
                     aria-hidden={!menuOpen}
                 >
-                    <button 
-                        onClick={() => handleNavigate('/about')}
+                    <Link 
+                        href="/about"
+                        onClick={closeMenu}
                         role="menuitem"
                     >
                         О компании
-                    </button>
-                    <button 
-                        onClick={() => handleNavigate('/pallets')}
+                    </Link>
+                    <Link 
+                        href="/pallets"
+                        onClick={closeMenu}
                         role="menuitem"
                     >
                         Поддоны
-                    </button>
-                    <button 
-                        onClick={() => handleNavigate('/services')}
+                    </Link>
+                    <Link 
+                        href="/services"
+                        onClick={closeMenu}
                         role="menuitem"
                     >
                         Услуги
-                    </button>
-                    <button 
-                        onClick={() => handleNavigate('/contacts')}
+                    </Link>
+                    <Link 
+                        href="/contacts"
+                        onClick={closeMenu}
                         role="menuitem"
                     >
                         Контакты
-                    </button>
+                    </Link>
                 </div>
             </div>
         </header>
